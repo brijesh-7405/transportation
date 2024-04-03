@@ -1,0 +1,7 @@
+INSERT INTO `orders` VALUES (50.5,20,3,5,2,0,0,100,0,10.5,'2024-03-26 13:21:57.309000','2024-03-22 17:30:00.000000',2,'2024-03-22 15:30:00.000000','2024-03-26 13:21:57.309000',1,'Origin','Receiver','Credit Card','Destination');
+
+INSERT INTO `role` VALUES ('2024-03-05 13:29:19.083000',1,'2024-03-05 13:29:19.083000','admin','SUPER_ADMIN'),('2024-03-05 13:30:43.089000',2,'2024-03-05 13:30:43.089000','admin','ADMIN'),('2024-03-05 13:30:50.180000',3,'2024-03-05 13:30:50.180000','user','USER');
+
+INSERT INTO `user` VALUES (0,'2024-03-05 14:26:23.654000','2024-03-05 14:26:23.654000',4,'nrajput7405@gmail.com','Brijesh','Rajput','token123','$2a$10$2/SrDYSwutagQTVk2ufd1eZeqaO2U4n2BMWpHf3UV.denOnX3ykH6','1234567890','https://example.com/profile.jpg','brijesh2203');
+
+INSERT INTO `user_role` VALUES (1,4),(2,4);
