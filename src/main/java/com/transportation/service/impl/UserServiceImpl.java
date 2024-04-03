@@ -26,9 +26,9 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
     @Override
     public Long createUser(User user) {
-//        Set<Role> roles =  roleRepository.findAll().stream().filter(f->f.getRoleName().equals("SUPER_ADMIN")|| f.getRoleName().equals("ADMIN")).collect(Collectors.toSet());
+        Set<Role> roles =  roleRepository.findAll().stream().filter(f->f.getRoleName().equals("USER")).collect(Collectors.toSet());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        user.setRoles(roles);
+        user.setRoles(roles);
         return userRepository.save(user).getUserId();
     }
 

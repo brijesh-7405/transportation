@@ -1,10 +1,13 @@
 package com.transportation.controller;
 
 import com.transportation.entity.Worker;
+import com.transportation.security.service.UserInfoDetails;
 import com.transportation.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,12 +34,19 @@ public class WorkerController {
 
     @PostMapping
     public ResponseEntity<Worker> createWorker(@RequestBody Worker worker) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfoDetails userDetailsDTO = (UserInfoDetails) authentication.getPrincipal();
+        worker.setCreatedBy(userDetailsDTO.getId());
+        worker.setUpdatedBy(userDetailsDTO.getId());
         Worker createdWorker = workerService.createWorker(worker);
         return new ResponseEntity<>(createdWorker, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Worker> updateWorker(@PathVariable("id") Long id, @RequestBody Worker worker) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfoDetails userDetailsDTO = (UserInfoDetails) authentication.getPrincipal();
+        worker.setUpdatedBy(userDetailsDTO.getId());
         Worker updatedWorker = workerService.updateWorker(id, worker);
         return new ResponseEntity<>(updatedWorker, HttpStatus.OK);
     }
